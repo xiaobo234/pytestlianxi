@@ -1,4 +1,5 @@
 import pytest
+import pytest_ordering
 
 #有两种运行方式，一是python解释器，一种是pytest解释器
 #方式一：直接配置python解释器，然后加入口，如下：
@@ -13,8 +14,10 @@ def test_003():
     assert fun(4)==5
 
 class Test():
+    @pytest.mark.run(order=2)
     def test_01(self):
         print('a')
+    @pytest.mark.run(order=1)
     def test_02(self):
         print('b')
 if __name__=='__main__':
